@@ -1,15 +1,15 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 
-Vue.use(Vuex);
+// Temporary type until Vuex 4 Alpha has Typescript support
+interface State { count: number; }
 
-export default new Vuex.Store({
-  state: {
+const state: State = { count: 0 };
+
+const mutations = {
+  // tslint:disable-next-line:no-shadowed-variable
+  increment(state: State) {
+    state.count++;
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
-});
+};
+
+export const store = createStore({ state, mutations });
