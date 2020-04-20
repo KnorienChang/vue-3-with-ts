@@ -2,12 +2,12 @@
   <div class="home">
     <img src="../assets/logo.png" alt="logo" />
     <h1>Welcome to Vue {{ version }}!</h1>
-    <button @click="handleCommitStore">Clicked {{ count }} times.</button>
-    <SubHome msg="hello sub home" :ipt="inputValue" />
+    <button @click="handleCommitStore">Clicked {{ state.count }} times.</button>
+    <SubHome msg="hello sub home" :ipt="state.inputValue" />
     <pre>
-      <input type="text" v-model="inputValue">
+      <input type="text" v-model="state.inputValue">
       <!-- 没有过滤器啦 -->
-      inputValue with capitalize: {{ capitalize(inputValue) }}
+      inputValue with capitalize: {{ capitalize(state.inputValue) }}
     </pre>
     <vue-slot
       :user="{
@@ -30,7 +30,9 @@ import {
   onMounted,
   onUpdated,
   onUnmounted,
-  onBeforeUnmount
+  onBeforeUnmount,
+  reactive,
+  watchEffect
 } from "vue";
 import { useStore } from "vuex";
 
@@ -62,11 +64,12 @@ export default defineComponent({
       console.log("home unmounted");
     });
 
-    const inputValue = ref();
-    inputValue.value = "knorien";
+    const state = reactive({
+      inputValue: "knorien",
+      count: computed((): number => store.state.count)
+    });
 
     const store = useStore();
-    const count = computed((): number => store.state.count);
     const handleCommitStore = (): void => {
       store.commit("increment");
     };
@@ -78,11 +81,15 @@ export default defineComponent({
       }
     );
 
+    watchEffect(() => {
+      console.log("watchEffect", state.inputValue);
+      console.log("watchEffect", store.state.count);
+    });
+
     return {
       version,
       store,
-      inputValue,
-      count,
+      state,
       capitalize,
       handleCommitStore
     };
