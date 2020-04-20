@@ -16,7 +16,8 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  setup(props, context) {
+    console.log(context);
     console.log(`sub home props:`, props);
     watch(
       () => props.ipt,

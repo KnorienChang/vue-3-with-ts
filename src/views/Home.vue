@@ -26,8 +26,11 @@ import {
   ref,
   computed,
   watch,
+  onRenderTracked,
+  onRenderTriggered,
   onBeforeMount,
   onMounted,
+  onBeforeUpdate,
   onUpdated,
   onUnmounted,
   onBeforeUnmount,
@@ -44,12 +47,18 @@ import VueSlot from "@/components/Slot.vue";
 export default defineComponent({
   name: "Home",
   setup() {
+    console.log("setup", Date.now());
+
     onBeforeMount((): void => {
       console.log("home beforeMount");
     });
 
     onMounted((): void => {
       console.log("home has mounted");
+    });
+
+    onBeforeUpdate((): void => {
+      console.log("home before updated");
     });
 
     onUpdated((): void => {
@@ -78,12 +87,24 @@ export default defineComponent({
       () => store.state.count,
       (val, oldVal) => {
         console.log(val, oldVal);
+      },
+      {
+        immediate: true,
+        deep: true
       }
     );
 
     watchEffect(() => {
       console.log("watchEffect", state.inputValue);
       console.log("watchEffect", store.state.count);
+    });
+
+    onRenderTracked(e => {
+      console.log("onRenderTracked", e);
+    });
+
+    onRenderTriggered(e => {
+      console.log("onRenderTriggered", e);
     });
 
     return {
@@ -100,6 +121,7 @@ export default defineComponent({
   },
   directives: {},
   beforeCreate(): void {
+    console.log("before created", Date.now());
     console.log("home before create");
   },
   created(): void {
