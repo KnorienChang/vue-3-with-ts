@@ -1,82 +1,102 @@
 <template>
   <div class="home">
-    <img src="../assets/logo.png"  alt="logo"/>
+    <img src="../assets/logo.png" alt="logo" />
     <h1>Welcome to Vue {{ version }}!</h1>
     <button @click="handleCommitStore">Clicked {{ count }} times.</button>
-    <sub-home msg="hello sub home" />
+    <SubHome msg="hello sub home" :ipt="inputValue" />
     <pre>
       <input type="text" v-model="inputValue">
       <!-- 没有过滤器啦 -->
       inputValue with capitalize: {{ capitalize(inputValue) }}
     </pre>
-    <vue-slot :user="{
+    <vue-slot
+      :user="{
         name: 'knorien ----- test slot'
-    }">
+      }"
+    >
       <template #slotUser="{ user }">{{ user.name }}</template>
     </vue-slot>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, version } from "vue";
+import {
+  version,
+  defineComponent,
+  ref,
+  computed,
+  watch,
+  onBeforeMount,
+  onMounted,
+  onUpdated,
+  onUnmounted,
+  onBeforeUnmount
+} from "vue";
 import { useStore } from "vuex";
-import SubHome from '@/components/SubHome.vue';
-import VueSlot from '@/components/Slot.vue';
+
 import { capitalize } from "@/utils";
 
+import SubHome from "@/components/SubHome.vue";
+import VueSlot from "@/components/Slot.vue";
+
 export default defineComponent({
-  name: 'Home',
+  name: "Home",
   setup() {
+    onBeforeMount((): void => {
+      console.log("home beforeMount");
+    });
+
+    onMounted((): void => {
+      console.log("home has mounted");
+    });
+
+    onUpdated((): void => {
+      console.log("home has updated");
+    });
+
+    onBeforeUnmount((): void => {
+      console.log("home before unmount");
+    });
+
+    onUnmounted((): void => {
+      console.log("home unmounted");
+    });
+
+    const inputValue = ref();
+    inputValue.value = "knorien";
+
     const store = useStore();
-    return { store };
-  },
-  data() {
+    const count = computed((): number => store.state.count);
+    const handleCommitStore = (): void => {
+      store.commit("increment");
+    };
+
+    watch(
+      () => store.state.count,
+      (val, oldVal) => {
+        console.log(val, oldVal);
+      }
+    );
+
     return {
       version,
-      inputValue: 'knorien'
-    }
+      store,
+      inputValue,
+      count,
+      capitalize,
+      handleCommitStore
+    };
   },
   components: {
     SubHome,
     VueSlot
   },
-  computed: {
-    count(): number {
-      return this.store.state.count;
-    }
-  },
-  watch: {
-    count(val, oldVal) {
-      console.log(val, oldVal);
-    }
-  },
   directives: {},
   beforeCreate(): void {
-    console.log('home before create');
+    console.log("home before create");
   },
   created(): void {
-    console.log('home has created');
-  },
-  beforeMount(): void {
-    console.log('home beforeMount');
-  },
-  mounted(): void {
-    console.log('home has mounted');
-  },
-  updated(): void {
-    console.log('home has updated');
-  },
-  beforeUnmount(): void {
-    console.log('home before unmount');
-  },
-  unmounted(): void {
-    console.log('home has unmounted');
-  },
-  methods: {
-    handleCommitStore(): void {
-      this.store.commit('increment');
-    },
-    capitalize
+    console.log("home has created");
   }
 });
 </script>

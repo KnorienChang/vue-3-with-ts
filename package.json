@@ -8,23 +8,23 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
+    "core-js": "^3.6.5",
     "vue": "next",
     "vue-router": "next",
     "vuex": "next"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-router": "~4.3.0",
-    "@vue/cli-plugin-typescript": "~4.3.0",
-    "@vue/cli-plugin-vuex": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
-    "@vue/compiler-sfc": "^3.0.0-alpha.11",
-    "lint-staged": "^10.1.2",
+    "@vue/cli-plugin-babel": "~4.3.1",
+    "@vue/cli-plugin-router": "~4.3.1",
+    "@vue/cli-plugin-typescript": "~4.3.1",
+    "@vue/cli-plugin-vuex": "~4.3.1",
+    "@vue/cli-service": "~4.3.1",
+    "@vue/compiler-sfc": "^3.0.0-beta.2",
+    "lint-staged": "^10.1.6",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
     "typescript": "~3.8.3",
-    "vue-cli-plugin-vue-next": "~0.0.5"
+    "vue-cli-plugin-vue-next": "~0.1.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

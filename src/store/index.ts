@@ -1,7 +1,9 @@
 import { createStore } from 'vuex';
 
 // Temporary type until Vuex 4 Alpha has Typescript support
-interface State { count: number; }
+interface State {
+  count: number;
+}
 
 const state: State = { count: 0 };
 

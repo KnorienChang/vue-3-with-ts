@@ -3,17 +3,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-
-interface User {
-  name: string | undefined
-}
+import { defineComponent, watch } from "vue";
 
 export default defineComponent({
   props: {
     user: {
-      type: Object as User
+      type: Object
     }
+  },
+  setup(props) {
+    watch(
+      () => props.user,
+      user => {
+        console.log("user: ---------", user);
+      },
+      {
+        deep: true,
+        immediate: true
+      }
+    );
   }
-})
+});
 </script>
