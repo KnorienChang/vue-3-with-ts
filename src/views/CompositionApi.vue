@@ -5,7 +5,7 @@
     <button @click="handleCommitStore">Clicked {{ state.count }} times.</button>
     <SubHome msg="hello sub home" :ipt="state.inputValue" />
     <pre>
-      <input type="text" v-model="state.inputValue">
+      <input type="text" v-model="state.inputValue" />
       <!-- 没有过滤器啦 -->
       inputValue with capitalize: {{ capitalize(state.inputValue) }}
     </pre>
@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { version, computed, watch, reactive, watchEffect } from "vue";
-import { useStore } from "vuex";
+import { store } from "@/store";
 
 import { capitalize } from "@/utils";
 
@@ -30,13 +30,12 @@ import VueSlot from "@/components/Slot.vue";
 
 export default {
   name: "Composition Api",
-  setup() {
+  setup(): unknown {
     const state = reactive({
       inputValue: "knorien",
       count: computed((): number => store.state.count),
     });
 
-    const store = useStore();
     const handleCommitStore = (): void => {
       store.commit("increment");
     };
@@ -71,5 +70,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

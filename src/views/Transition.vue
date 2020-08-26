@@ -11,9 +11,9 @@ export default defineComponent({
   name: "Transition",
   data() {
     return {
-      show: true
+      show: true,
     };
-  }
+  },
 });
 </script>
 

@@ -6,29 +6,32 @@
 <script lang="ts">
 import { version } from "vue";
 import { store } from "@/store";
+interface dataOptions {
+  version: string;
+}
 export default {
   name: "Optional Api",
-  data() {
+  data(): dataOptions {
     return {
       version,
     };
   },
   computed: {
-    count() {
+    count(): number {
       return store.state?.count || 0;
     },
   },
   watch: {
-    count(v: number, ov: number) {
+    count(v: number, ov: number): void {
       console.log(ov, v);
     },
   },
   // https://v3.vuejs.org/api/options-lifecycle-hooks.html
-  mounted() {
+  mounted(): void {
     console.log("optional api mounted");
   },
   methods: {
-    handleCommitStore() {
+    handleCommitStore(): void {
       store.commit("increment");
     },
   },

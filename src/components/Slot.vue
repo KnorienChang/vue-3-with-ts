@@ -8,20 +8,20 @@ import { defineComponent, watch } from "vue";
 export default defineComponent({
   props: {
     user: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   setup(props) {
     watch(
       () => props.user,
-      user => {
+      (user) => {
         console.log("user: ---------", user);
       },
       {
         deep: true,
-        immediate: true
+        immediate: true,
       }
     );
-  }
+  },
 });
 </script>

@@ -9,22 +9,22 @@ export default defineComponent({
   props: {
     msg: {
       type: String,
-      default: ""
+      default: "",
     },
     ipt: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props, context) {
     console.log(context);
     console.log(`sub home props:`, props);
     watch(
       () => props.ipt,
-      ipt => {
+      (ipt) => {
         console.log(ipt);
       }
     );
-  }
+  },
 });
 </script>
