@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
+    <router-link to="/compositionApi">Composition Api</router-link> |
+    <router-link to="/optionalApi">Optional Api</router-link> |
     <router-link to="/transition">Transition</router-link>
   </div>
   <router-view />
