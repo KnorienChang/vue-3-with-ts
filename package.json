@@ -9,32 +9,36 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "next",
-    "vue-router": "next",
-    "vuex": "next"
+    "vue": "^3.0.0-rc.8",
+    "vue-router": "^4.0.0-beta.7",
+    "vuex": "^4.0.0-beta.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.4",
-    "@vue/cli-plugin-router": "^4.5.4",
-    "@vue/cli-plugin-typescript": "^4.5.4",
-    "@vue/cli-plugin-vuex": "^4.5.4",
-    "@vue/cli-service": "^4.5.4",
-    "@vue/compiler-sfc": "latest",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "@vue/cli-plugin-babel": "~4.5.4",
+    "@vue/cli-plugin-eslint": "~4.5.4",
+    "@vue/cli-plugin-router": "~4.5.4",
+    "@vue/cli-plugin-typescript": "~4.5.4",
+    "@vue/cli-plugin-vuex": "~4.5.4",
+    "@vue/cli-service": "~4.5.4",
+    "@vue/compiler-sfc": "^3.0.0-rc.8",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.1.0",
+    "eslint": "^7.7.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^7.0.0-0",
     "lint-staged": "^10.2.13",
     "node-sass": "^4.14.1",
+    "prettier": "^2.1.1",
     "sass-loader": "^10.0.1",
-    "typescript": "~4.0.2",
-    "vue-cli-plugin-vue-next": "^0.1.3"
+    "typescript": "~4.0.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
+    "*.{js,jsx,vue,ts,tsx}": [
       "vue-cli-service lint",
       "git add"
     ]
