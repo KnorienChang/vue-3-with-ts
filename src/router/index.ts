@@ -17,6 +17,14 @@ export const router = createRouter({
       name: "CompositionApi",
     },
     {
+      path: "/compositionTsx",
+      component: () =>
+        import(
+          /* webpackChunkName: "composition tsx" */ "@/views/CompositionTsx.tsx"
+        ),
+      name: "CompositionTsx",
+    },
+    {
       path: "/optionalApi",
       component: () =>
         import(

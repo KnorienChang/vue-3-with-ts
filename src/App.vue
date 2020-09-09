@@ -1,6 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/compositionApi">Composition Api</router-link> |
+    <router-link to="/compositionTsx">Composition Tsx</router-link> |
     <router-link to="/optionalApi">Optional Api</router-link> |
     <router-link to="/transition">Transition</router-link>
   </div>
