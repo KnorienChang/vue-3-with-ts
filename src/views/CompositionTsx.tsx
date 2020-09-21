@@ -1,5 +1,6 @@
 import { ref, RendererElement } from "vue";
 import useRouteInfo from "@/hooks/useRouteInfo";
+import { RouteLocation } from "vue-router";
 
 export default {
   name: "Composition Tsx",
@@ -8,12 +9,12 @@ export default {
     const handleBtn = (): void => {
       radioChecked.value = radioChecked.value === "o1" ? "o2" : "o1";
     };
-    const handleIpt = ({ target }: any): void => {
-      const { id } = target;
+    const handleIpt = ({ target }: { target: EventTarget | null }): void => {
+      const { id } = target as HTMLInputElement;
       radioChecked.value = id;
     };
     return (): JSX.Element => {
-      const routeInfo = useRouteInfo();
+      const routeInfo: RouteLocation = useRouteInfo();
       return (
         <div class="page-container">
           <button onClick={handleBtn}>
