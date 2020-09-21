@@ -1,9 +1,9 @@
-import { ref } from "vue";
+import { ref, RendererElement, RenderFunction } from "vue";
 import useRouteInfo from "@/hooks/useRouteInfo";
 
 export default {
   name: "Composition Tsx",
-  setup(): unknown {
+  setup(): RendererElement {
     const radioChecked = ref<string>("o1");
     const handleBtn = (): void => {
       radioChecked.value = radioChecked.value === "o1" ? "o2" : "o1";
@@ -12,7 +12,7 @@ export default {
       const { id } = target;
       radioChecked.value = id;
     };
-    return () => {
+    return (): JSX.Element => {
       const routeInfo = useRouteInfo();
       return (
         <div class="page-container">
