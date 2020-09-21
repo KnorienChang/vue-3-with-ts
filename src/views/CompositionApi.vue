@@ -20,7 +20,14 @@
 </template>
 
 <script lang="ts">
-import { version, computed, watch, reactive, watchEffect } from "vue";
+import {
+  version,
+  computed,
+  watch,
+  reactive,
+  watchEffect,
+  ComputedRef,
+} from "vue";
 import { store } from "@/store";
 
 import { capitalize } from "@/utils";
@@ -28,12 +35,24 @@ import { capitalize } from "@/utils";
 import SubHome from "@/components/SubHome.vue";
 import VueSlot from "@/components/Slot.vue";
 
+interface ReactiveProp {
+  inputValue: string;
+  count: ComputedRef<number> | number;
+}
+
+interface SetupProp {
+  version: string;
+  state: ReactiveProp;
+  capitalize: (value: string) => string;
+  handleCommitStore: () => void;
+}
+
 export default {
   name: "Composition Api",
-  setup(): unknown {
-    const state = reactive({
+  setup(): SetupProp {
+    const state = reactive<ReactiveProp>({
       inputValue: "knorien",
-      count: computed((): number => store.state.count),
+      count: computed(() => store.state.count),
     });
 
     const handleCommitStore = (): void => {
@@ -42,7 +61,7 @@ export default {
 
     watch(
       () => store.state.count,
-      (val, oldVal) => {
+      (val, oldVal): void => {
         console.log(val, oldVal);
       },
       {
@@ -58,7 +77,6 @@ export default {
 
     return {
       version,
-      store,
       state,
       capitalize,
       handleCommitStore,

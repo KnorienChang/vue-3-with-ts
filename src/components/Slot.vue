@@ -3,15 +3,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from "vue";
+import { watch } from "vue";
 
-export default defineComponent({
+interface UserProp {
+  name: string;
+}
+
+export default {
   props: {
     user: {
       type: Object,
+      default: (): UserProp => ({
+        name: "",
+      }),
     },
   },
-  setup(props) {
+  setup(
+    props: Readonly<{
+      user: UserProp | unknown;
+    }>
+  ): void {
     watch(
       () => props.user,
       (user) => {
@@ -23,5 +34,5 @@ export default defineComponent({
       }
     );
   },
-});
+};
 </script>

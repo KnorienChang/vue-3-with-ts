@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from "vue";
-export default defineComponent({
+import { SetupContext, watch } from "vue";
+export default {
   name: "SubHome",
   props: {
     msg: {
@@ -16,7 +16,13 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, context) {
+  setup(
+    props: Readonly<{
+      msg: string;
+      ipt: string;
+    }>,
+    context: SetupContext
+  ): void {
     console.log(context);
     console.log(`sub home props:`, props);
     watch(
@@ -26,5 +32,5 @@ export default defineComponent({
       }
     );
   },
-});
+};
 </script>

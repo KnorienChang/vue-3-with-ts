@@ -5,10 +5,6 @@
 
 <script lang="ts">
 import { watch, SetupContext } from "vue";
-interface PropTypes {
-  msg: string;
-  ipt: string;
-}
 export default {
   name: "SubContent",
   props: {
@@ -21,7 +17,13 @@ export default {
       required: true,
     },
   },
-  setup(props: PropTypes, context: SetupContext): void {
+  setup(
+    props: Readonly<{
+      msg: string;
+      ipt: string;
+    }>,
+    context: SetupContext
+  ): void {
     console.log(context);
     console.log(`sub content props:`, props);
     watch(

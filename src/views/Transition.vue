@@ -6,15 +6,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
+interface TransProp {
+  show: boolean;
+}
+
+export default {
   name: "Transition",
-  data() {
+  data(): TransProp {
     return {
       show: true,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
