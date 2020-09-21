@@ -12,9 +12,12 @@
     <vue-slot
       :user="{
         name: 'knorien ----- test slot',
+        n: 10,
       }"
     >
-      <template #slotUser="{ user }">{{ user.name }}</template>
+      <template #slotUser="{ user }"
+        >{{ user.name }} ------ {{ user.n }}</template
+      >
     </vue-slot>
   </div>
 </template>
