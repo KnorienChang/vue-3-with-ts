@@ -1,4 +1,4 @@
-import { ref, RendererElement, RenderFunction } from "vue";
+import { ref, RendererElement } from "vue";
 import useRouteInfo from "@/hooks/useRouteInfo";
 
 export default {
