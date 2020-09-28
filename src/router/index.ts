@@ -33,5 +33,11 @@ export const router = createRouter({
       name: "about",
     },
     { path: "/transition", component: Transition, name: "transition" },
+    {
+      path: "/:pathMatch(.*)*",
+      component: () =>
+        import(/* webpackChunkName: "error "*/ "@/views/404.vue"),
+      name: "NotFound",
+    },
   ],
 });
